@@ -34,3 +34,5 @@ let  letras = ["a", "b", "c", "d", "e", "f"];
 console.log(letras.toSpliced(2, 2)); // [ 'a', 'b', 'e', 'f' ]
 console.log(letras.toSpliced(2, 0, "-")); // ["a", "b", "-", "c", "d", "e", "f"]
 console.log(letras.toSpliced(3, 2, "D", "E")); // [ 'a', 'b', 'c', 'D', 'E', 'f' ]
+
+console.log(letras.toReversed()); // [ 'f', 'e', 'd', 'c', 'b', 'a' ]
