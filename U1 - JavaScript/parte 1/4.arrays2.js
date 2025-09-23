@@ -23,3 +23,24 @@ console.log(strs.map((s) => s[0])); // ['g', 'z', 'p', 'c', 'a']
 console.log(nums.filter((n) => n % 2 === 0)); // [112, 34, 26]
 // Array con las palabras de menos de 6 caracteres en mayúsculas
 console.log(strs.filter((p) => p.length < 6).map((p) => p.toLocaleUpperCase())); // ['GATO', 'ZORRO', 'PERRO']
+
+// Concatenar la primera letra de cada cadena del array strs
+console.log(strs); // [ 'gato', 'zorro', 'perro', 'caballo', 'abejorro' ]
+console.log(strs.reduce((acum, s) => acum + s[0], "")); // gzpca
+console.log(strs.find((a) => a.startsWith("c"))); // caballo
+
+console.log(strs.map((s) => Array.from(s)).flat());
+console.log(strs.flatMap((s) => Array.from(s))); // Igual que el de arriba
+
+const personas = [
+  { nombre: "Pepe", edad: 23 },
+  { nombre: "Juan", edad: 12 },
+  { nombre: "Rosa", edad: 35 },
+  { nombre: "Ana", edad: 15 },
+];
+// Devuelve la suma de las edades de las personas mayores de edad
+const suma = personas
+  .filter((p) => p.edad >= 18)
+  .map((p) => p.edad)
+  .reduce((t, e) => t + e, 0);
+console.log(suma); // 58 (23 + 35)c
