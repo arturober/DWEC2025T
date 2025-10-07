@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Productos</title>
+    <style>
+        /* Estilos básicos para la lista de productos */
+        .contenedor-productos {
+            font-family: sans-serif;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .lista-productos {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .producto {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .producto-imagen img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .producto-titulo {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .producto-descripcion {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .producto-precio {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+    <script type="module" src="5.querySelector.js"></script>
+</head>
+<body>
+
+    <div class="contenedor-productos">
+        <h1>Nuestros Productos</h1>
+
+        <ul class="lista-productos">
+            <!-- Lista de productos -->
+            <li class="producto">
+                <div class="producto-imagen">
+                    <img src="img/silla.webp" alt="Producto 1">
+                </div>
+                <div class="producto-info">
+                    <h2 class="producto-titulo">Silla</h2>
+                    <p class="producto-descripcion">Esta es una breve descripción del producto número 1. Ideal para tus necesidades.</p>
+                    <p class="producto-precio">$19.99</p>
+                </div>
+            </li>
+
+            <li class="producto">
+                <div class="producto-imagen">
+                    <img src="img/lampara.webp" alt="Producto 2">
+                </div>
+                <div class="producto-info">
+                    <h2 class="producto-titulo">Lámpara</h2>
+                    <p class="producto-descripcion">Descripción corta y atractiva para el segundo producto de esta lista.</p>
+                    <p class="producto-precio">$24.99</p>
+                </div>
+            </li>
+
+            <li class="producto">
+                <div class="producto-imagen">
+                    <img src="img/mesa.webp" alt="Producto 3">
+                </div>
+                <div class="producto-info">
+                    <h2 class="producto-titulo">Mesa</h2>
+                    <p class="producto-descripcion">Un producto excelente con características únicas que no te puedes perder.</p>
+                    <p class="producto-precio">$29.99</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>
