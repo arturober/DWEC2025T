@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="6.add remove DOM.js"></script>
+  </head>
+  <body>
+    <h1>Manipulación del DOM: Añadir y Eliminar Elementos</h1>
+
+    <p>
+        <input type="text" id="nuevo" placeholder="Nuevo ítem" />
+        <button id="prepend">Agregar al principio</button>
+        <button id="append">Agregar al final</button>
+        <!-- <button id="eliminar">Eliminar Último Ítem</button> -->
+    </p>
+    <p>
+        <input type="number" id="pos" value="1" min="1" />
+        <button id="addPos">Añadir en posición</button>
+        <button id="replacePos">Reemplazar posicion</button>
+    </p>
+    <p>
+        <button id="vaciar">Vaciar lista</button>
+    </p>
+    <ul id="lista">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+  </body>
+</html>
