@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="13.products template.js"></script>
+    <style>
+        td {
+            vertical-align: middle;
+
+            img {
+                height: 40px;
+            }
+        }
+
+        input {
+            & ~ .error {
+                display: none;
+                color: red;
+                margin-top: 0.2em;
+            }
+
+            &:focus {
+                outline: none;
+            }
+            &:user-invalid {
+                border: 1px red solid;
+
+                & ~ .error {
+                    display: block;
+                }
+            }
+
+            &:user-valid {
+                border: 1px green solid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="formProduct">
+        <p>
+            <input type="text" name="productName" id="productName" placeholder="Product Name" required>
+            <small class="error">El nombre es obligatorio</small>
+        </p>
+        <p>
+            <input type="number" name="price" id="price" placeholder="Price" required min="0.01" step="0.01">
+            <small class="error">El precio es obligatorio y debe ser positivo</small>
+        </p>
+        
+        <p>
+            <input type="file" name="image" required accept="image/*">
+            <small class="error">La imagen es obligatoria y de tipo imagen</small>
+            <small class="error">La imagen no debe ocupar más de 100KB</small>
+        </p>
+        <p><img src="" id="imgPreview" alt=""></p>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <template id="productTemplate">
+        <tr>
+            <td><img src="" alt=""></td>
+            <td class="name"></td>
+            <td class="price"></td>
+            <td><button class="delete">Borrar</button></td>
+        </tr>
+    </template>
+</body>
+</html>

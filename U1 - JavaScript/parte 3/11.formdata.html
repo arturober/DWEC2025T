@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="11.formdata.js"></script>
+</head>
+<body>
+    <form id="formPersona">
+        <p><input type="text" name="nombre" id="nombre" placeholder="Nombre" required></p>
+        <p>
+            Aficiones:
+            <input type="checkbox" name="hobbies" value="tenis"> Tenis
+            <input type="checkbox" name="hobbies" value="comer"> Comer
+            <input type="checkbox" name="hobbies" value="viajar"> Viajar
+            <input type="checkbox" name="hobbies" value="caminar"> Caminar
+        </p>
+        <p>Avatar: <input type="file" name="avatar" required accept="image/*"></p>
+        <p><img src="" alt="" id="imgPreview"></p>
+        <button type="submit">Añadir</button>
+    </form>
+</body>
+</html>

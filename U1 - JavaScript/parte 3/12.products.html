@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="12.products.js"></script>
+    <style>
+        td {
+            vertical-align: middle;
+
+            img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="formProduct">
+        <p><input type="text" name="productName" id="productName" placeholder="Product Name" required></p>
+        <p><input type="number" name="price" id="price" placeholder="Price" required></p>
+        <p><input type="file" name="image" required accept="image/*"></p>
+        <p><img src="" id="imgPreview" alt=""></p>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <table id="tabla">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>
