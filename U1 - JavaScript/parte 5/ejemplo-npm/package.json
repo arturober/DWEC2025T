@@ -1,0 +1,27 @@
+{
+  "name": "ejemplo-npm",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Arturo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --write src/**/*.js",
+    "prelint": "npm run prettier",
+    "lint": "eslint src/**/*.js",
+    "prestart": "npm run lint",
+    "start": "lite-server"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.38.0",
+    "eslint": "^9.38.0",
+    "globals": "^16.4.0",
+    "lite-server": "^2.6.1",
+    "prettier": "^3.6.2",
+    "terser": "^5.40.0"
+  }
+}
