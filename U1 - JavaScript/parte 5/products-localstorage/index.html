@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      td {
+        vertical-align: middle;
+        img {
+          height: 50px;
+        }
+      }
+    </style>
+    <script type="module" src="src/index.js"></script>
+</head>
+<body>
+    <form id="productForm">
+        <p><input type="text" name="description" placeholder="Description"></p>
+        <p><input type="number" name="price" placeholder="Price"></p>
+        <p>Date available: <input type="date" name="available"></p>
+        <p>Select image: <input type="file" name="image"></p>
+        <p><img src="" id="imgPreview" alt=""></p>
+        <p><button type="submit">Add Product</button></p>
+    </form>
+    <table id="tabla">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Available</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se insertan los productos -->
+      </tbody>
+    </table>
+
+    <template id="productTemplate">
+      <tr>
+        <td><img src="" alt="Product Image" /></td>
+        <td class="description"></td>
+        <td class="price"></td>
+        <td class="available"></td>
+        <td><button class="borrar">Eliminar</button></td>
+      </tr>
+    </template>
+</body>
+</html>
