@@ -16,3 +16,4 @@ class Persona {
 
 const p = new Persona("Pepe", 23, "admin");
 Object.entries(p).forEach(([k,v]) => console.log(`${k}: ${v}`));
+
