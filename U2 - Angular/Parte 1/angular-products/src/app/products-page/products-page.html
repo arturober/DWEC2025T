@@ -1,7 +1,7 @@
 <div class="card mb-4">
   <div class="card-header bg-success text-white">Add product</div>
   <div class="card-body">
-    <form (ngSubmit)="addProduct()">
+    <form (ngSubmit)="addProduct(form)" #form="ngForm">
       <label class="mb-3 row">
         <span class="col-sm-2 col-form-label text-sm-end">Description</span>
         <div class="col-sm-10">
@@ -37,9 +37,10 @@
             type="file"
             class="form-control"
             accept="image/*"
-            (change)="changeImage($event)"
+            #imageInput
+            (change)="changeImage(imageInput)"
             name="fileName"
-            [(ngModel)]="fileName"
+            ngModel
           />
         </div>
       </label>
@@ -69,12 +70,13 @@
         <thead>
           <tr>
             <th>
+              @let btnText = (showImage ? 'Hide' : 'Show') + ' images';
               <button
                 class="btn btn-sm"
                 [class]="showImage ? 'btn-danger' : 'btn-primary'"
                 (click)="toggleImage()"
               >
-                {{ showImage ? 'Hide' : 'Show' }} images
+                {{ btnText }}
               </button>
             </th>
             <th>Producto</th>

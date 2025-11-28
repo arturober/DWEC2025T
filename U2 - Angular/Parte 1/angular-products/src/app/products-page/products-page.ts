@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Product, ProductInsert } from '../interfaces/product';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'products-page',
@@ -26,7 +26,7 @@ export class ProductsPage {
       imageUrl: '/motherboard.jpg',
       rating: 4,
     },
-        {
+    {
       id: 3,
       description: 'RAM DDR5 16GB',
       available: '2024-02-14',
@@ -46,22 +46,21 @@ export class ProductsPage {
 
   showImage = true;
 
-  newProduct!: ProductInsert;
-  fileName = '';
+  newProduct: ProductInsert = {
+    description: '',
+    available: '',
+    imageUrl: '',
+    price: 0,
+  };
   nextId = 5;
 
   #changeDetector = inject(ChangeDetectorRef); // Necessary in new Angular zoneless apps
-
-  constructor() {
-    this.resetProduct();
-  }
 
   toggleImage() {
     this.showImage = !this.showImage;
   }
 
-  changeImage(event: Event) {
-    const fileInput = event.target as HTMLInputElement;
+  changeImage(fileInput: HTMLInputElement) {
     if (!fileInput.files?.length) return;
     const reader = new FileReader();
     reader.readAsDataURL(fileInput.files[0]);
@@ -71,21 +70,12 @@ export class ProductsPage {
     });
   }
 
-  addProduct() {
+  addProduct(form: NgForm) {
     const prod = this.newProduct as Product;
     prod.id = this.nextId++;
     prod.rating = 0;
-    this.products.push(prod);
-    this.resetProduct();
-  }
-
-  private resetProduct() {
-    this.newProduct = {
-      description: '',
-      available: '',
-      imageUrl: '',
-      price: 0
-    };
-    this.fileName = '';
+    this.products.push({...prod});
+    form.resetForm();
+    this.newProduct.imageUrl = '';
   }
 }
