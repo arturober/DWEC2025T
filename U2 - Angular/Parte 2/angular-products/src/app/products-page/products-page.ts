@@ -1,15 +1,17 @@
-import { ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product, ProductInsert } from '../interfaces/product';
+import { DatePipe, UpperCasePipe } from '@angular/common';
+import { IntlCurrencyPipe } from '../pipes/intl-currency-pipe';
 
 @Component({
   selector: 'products-page',
-  imports: [FormsModule],
+  imports: [FormsModule, IntlCurrencyPipe, DatePipe, UpperCasePipe],
   templateUrl: './products-page.html',
   styleUrl: './products-page.css',
 })
 export class ProductsPage {
-  products: Product[] = [
+  products = signal<Product[]>([
     {
       id: 1,
       description: 'SSD hard drive',
@@ -42,9 +44,16 @@ export class ProductsPage {
       imageUrl: '/hdd.jpg',
       rating: 2,
     },
-  ];
+  ]);
 
   readonly showImage = signal(true);
+  readonly search = signal('');
+
+  productsFiltered = computed(() =>
+    this.products().filter((p) =>
+      p.description.toLocaleLowerCase().includes(this.search().toLocaleLowerCase()),
+    ),
+  );
 
   newProduct: ProductInsert = {
     description: '',
@@ -71,10 +80,10 @@ export class ProductsPage {
   }
 
   addProduct(form: NgForm) {
-    const prod = this.newProduct as Product;
+    const prod = { ...this.newProduct } as Product;
     prod.id = this.nextId++;
     prod.rating = 0;
-    this.products.push({...prod});
+    this.products.update(products => [...products, prod]);
     form.resetForm();
     this.newProduct.imageUrl = '';
   }

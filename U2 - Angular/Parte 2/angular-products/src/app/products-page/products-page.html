@@ -64,7 +64,18 @@
 <div class="card">
   <div class="card-header bg-primary text-white">Mi lista de productos</div>
   <div class="card-block">
-    @if (products.length) {
+    <div class="row py-3">
+      <label class="col-form-label col-sm-2 text-sm-end" for="filterDesc">
+        Filter:
+      </label>
+      <div class="col-sm-5">
+        <input type="text" [(ngModel)]="search" class="form-control" id="filterDesc" placeholder="Filter..." />
+      </div>
+      <div class="col-form-label col-sm-5">
+        Filtered by: {{ search() }}
+      </div>
+    </div>
+    @if (productsFiltered().length) {
       <div class="table-responsive">
         <table class="table table-striped m-0">
           <thead>
@@ -85,11 +96,15 @@
             </tr>
           </thead>
           <tbody>
-            @for (product of products; track product.id) {
+            @for (product of productsFiltered(); track product.id) {
               <tr>
                 <td>
                   @if (showImage()) {
-                    <img [src]="product.imageUrl" alt="" />
+                    <img
+                      [src]="product.imageUrl"
+                      [title]="product.description | uppercase"
+                      alt=""
+                    />
                   }
                 </td>
                 <td [class]="{ 'text-danger': $even, 'text-success': $odd }">
@@ -97,8 +112,8 @@
                 </td>
                 <!-- <td [class]="$even ? 'text-danger': 'text-success'">{{ product.description }}</td> -->
                 <!-- <td [class.text-danger]="$even" [class.text-success]="$odd">{{ product.description }}</td> -->
-                <td>{{ product.price }}</td>
-                <td>{{ product.available }}</td>
+                <td>{{ product.price | intlCurrency:'EUR':'es' }}</td>
+                <td>{{ product.available | date:'dd/MM/yyyy' }}</td>
               </tr>
             }
           </tbody>
