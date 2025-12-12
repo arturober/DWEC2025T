@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Product, ProductInsert } from '../interfaces/product';
-import { DatePipe, UpperCasePipe } from '@angular/common';
-import { IntlCurrencyPipe } from '../pipes/intl-currency-pipe';
+import { ProductItem } from '../product-item/product-item';
 
 @Component({
   selector: 'products-page',
-  imports: [FormsModule, IntlCurrencyPipe, DatePipe, UpperCasePipe],
+  imports: [FormsModule, ProductItem],
   templateUrl: './products-page.html',
   styleUrl: './products-page.css',
 })

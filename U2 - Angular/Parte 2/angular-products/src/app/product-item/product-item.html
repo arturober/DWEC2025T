@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    @if (showImage()) {
+      <img [src]="product().imageUrl" [title]="product().description | uppercase" alt="" />
+    }
+  </td>
+  <td>
+    {{ product().description }}
+  </td>
+  <!-- <td [class]="$even ? 'text-danger': 'text-success'">{{ product.description }}</td> -->
+  <!-- <td [class.text-danger]="$even" [class.text-success]="$odd">{{ product.description }}</td> -->
+  <td>{{ product().price | intlCurrency: 'EUR' : 'es' }}</td>
+  <td>{{ product().available | date: 'dd/MM/yyyy' }}</td>
+</tr>
