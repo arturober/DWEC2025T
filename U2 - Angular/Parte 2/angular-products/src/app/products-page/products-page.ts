@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
-import { Product, ProductInsert } from '../interfaces/product';
+import { Component, computed, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Product } from '../interfaces/product';
 import { ProductItem } from '../product-item/product-item';
+import { ProductForm } from '../product-form/product-form';
 
 @Component({
   selector: 'products-page',
-  imports: [FormsModule, ProductItem],
+  imports: [FormsModule, ProductItem, ProductForm],
   templateUrl: './products-page.html',
   styleUrl: './products-page.css',
 })
@@ -54,36 +55,15 @@ export class ProductsPage {
     ),
   );
 
-  newProduct: ProductInsert = {
-    description: '',
-    available: '',
-    imageUrl: '',
-    price: 0,
-  };
-  nextId = 5;
-
-  #changeDetector = inject(ChangeDetectorRef); // Necessary in new Angular zoneless apps
-
   toggleImage() {
     this.showImage.update((value) => !value);
   }
 
-  changeImage(fileInput: HTMLInputElement) {
-    if (!fileInput.files?.length) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(fileInput.files[0]);
-    reader.addEventListener('load', () => {
-      this.newProduct.imageUrl = reader.result as string;
-      this.#changeDetector.markForCheck(); // Necessary in new Angular zoneless apps
-    });
+  addProduct(prod: Product) {
+    this.products.update(products => [...products, prod]);
   }
 
-  addProduct(form: NgForm) {
-    const prod = { ...this.newProduct } as Product;
-    prod.id = this.nextId++;
-    prod.rating = 0;
-    this.products.update(products => [...products, prod]);
-    form.resetForm();
-    this.newProduct.imageUrl = '';
+  deleteProduct(product: Product) {
+    this.products.update(products => products.filter(p => p !== product));
   }
 }
