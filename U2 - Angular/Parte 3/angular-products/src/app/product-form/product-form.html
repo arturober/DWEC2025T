@@ -37,8 +37,8 @@
             type="file"
             class="form-control"
             accept="image/*"
-            #imageInput
-            (change)="changeImage(imageInput)"
+            encodeBase64
+            (encoded)="newProduct.imageUrl = $event"
             name="fileName"
             ngModel
           />

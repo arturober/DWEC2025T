@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, inject, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { EncodeBase64 } from '../directives/encode-base64';
 import { Product, ProductInsert } from '../interfaces/product';
 
 @Component({
   selector: 'product-form',
-  imports: [FormsModule],
+  imports: [FormsModule, EncodeBase64],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
 })
@@ -18,18 +19,6 @@ export class ProductForm {
     price: 0,
   };
   nextId = 5;
-
-  #changeDetector = inject(ChangeDetectorRef); // Necessary in new Angular zoneless apps
-
-  changeImage(fileInput: HTMLInputElement) {
-    if (!fileInput.files?.length) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(fileInput.files[0]);
-    reader.addEventListener('load', () => {
-      this.newProduct.imageUrl = reader.result as string;
-      this.#changeDetector.markForCheck(); // Necessary in new Angular zoneless apps
-    });
-  }
 
   addProduct(form: NgForm) {
     const prod = { ...this.newProduct } as Product;
