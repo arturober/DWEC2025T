@@ -1,0 +1,11 @@
+<select [(ngModel)]="color">
+  <option value="yellow">Yellow</option>
+  <option value="red">Red</option>
+  <option value="cyan">Cyan</option>
+</select>
+
+<h1 setColor [bgColor]="color()">
+  Hola mundo
+</h1>
+
+<p setColor>Soy un párrafo</p>
