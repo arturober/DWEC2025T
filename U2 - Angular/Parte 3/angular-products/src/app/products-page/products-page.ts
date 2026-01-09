@@ -4,6 +4,7 @@ import { Product } from '../interfaces/product';
 import { ProductItem } from '../product-item/product-item';
 import { ProductForm } from '../product-form/product-form';
 import { ProductsService } from '../services/products-service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'products-page',
@@ -26,9 +27,13 @@ export class ProductsPage {
   );
 
   constructor() {
-    this.productsService.getProducts().subscribe((products) => {
-      this.products.set(products);
-    });
+    this.productsService
+      .getProducts()
+      .pipe(takeUntilDestroyed())
+      .subscribe({
+        next: (products) => this.products.set(products),
+        error: (error) => console.log(error),
+      });
   }
 
   toggleImage() {
@@ -36,10 +41,10 @@ export class ProductsPage {
   }
 
   addProduct(prod: Product) {
-    this.products.update(products => [...products, prod]);
+    this.products.update((products) => [...products, prod]);
   }
 
   deleteProduct(product: Product) {
-    this.products.update(products => products.filter(p => p !== product));
+    this.products.update((products) => products.filter((p) => p !== product));
   }
 }
