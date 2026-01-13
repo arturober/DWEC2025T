@@ -1,10 +1,9 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Product } from '../interfaces/product';
-import { ProductItem } from '../product-item/product-item';
+import { Product, ProductsResponse } from '../interfaces/product';
 import { ProductForm } from '../product-form/product-form';
+import { ProductItem } from '../product-item/product-item';
 import { ProductsService } from '../services/products-service';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'products-page',
@@ -13,28 +12,20 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './products-page.css',
 })
 export class ProductsPage {
-  productsService = inject(ProductsService);
-
-  products = signal<Product[]>([]);
-
   readonly showImage = signal(true);
   readonly search = signal('');
 
-  productsFiltered = computed(() =>
-    this.products().filter((p) =>
-      p.description.toLocaleLowerCase().includes(this.search().toLocaleLowerCase()),
-    ),
-  );
+  productsService = inject(ProductsService);
 
-  constructor() {
-    this.productsService
-      .getProducts()
-      .pipe(takeUntilDestroyed())
-      .subscribe({
-        next: (products) => this.products.set(products),
-        error: (error) => console.log(error),
-      });
-  }
+  productsResource = this.productsService.getProductsResource(this.search);
+  // products = linkedSignal(() => this.productsResource.value()?.products ?? []);
+  products = linkedSignal<ProductsResponse | undefined, Product[]>({
+    source: () => this.productsResource.value(),
+    computation: (newVal, previous) => {
+      if(!newVal) { return previous?.value ?? []; }
+      return newVal.products;
+    }
+  });
 
   toggleImage() {
     this.showImage.update((value) => !value);

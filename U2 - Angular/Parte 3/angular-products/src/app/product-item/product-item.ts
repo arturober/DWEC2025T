@@ -23,7 +23,10 @@ export class ProductItem {
   #changeDetector = inject(ChangeDetectorRef);
 
   deleteProduct() {
-    this.deleted.emit();
+    this.#productsService
+      .deleteProduct(this.product().id)
+      .pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(() => this.deleted.emit());
   }
 
   changeRating(rating: number) {
