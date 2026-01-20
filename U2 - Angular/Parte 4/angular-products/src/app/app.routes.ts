@@ -1,25 +1,16 @@
 import { Routes } from '@angular/router';
-import { ProductDetail } from './product-detail/product-detail';
-import { ProductForm } from './product-form/product-form';
-import { ProductsPage } from './products-page/products-page';
+import { Welcome } from './welcome/welcome';
 
 export const routes: Routes = [
   {
+    path: 'welcome',
+    loadComponent: () => import('./welcome/welcome').then((m) => m.Welcome),
+    title: 'Bienvenido | Angular Products',
+  },
+  {
     path: 'products',
-    component: ProductsPage,
-    title: 'Productos | Angular Products',
+    loadChildren: () => import('./products/products.routes').then((m) => m.productsRoutes),
   },
-  {
-    path: 'products/add',
-    component: ProductForm,
-    title: 'Añadir producto | Angular Products',
-  },
-  {
-    path: 'products/:id',
-    component: ProductDetail,
-    title: 'Detalle producto | Angular Products',
-  },
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  // Aquí podríamos cargar un página de error 404 por ejemplo
-  { path: '**', redirectTo: '/products' },
+  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: '**', redirectTo: '/welcome' },
 ];

@@ -2,9 +2,9 @@ import { DatePipe } from '@angular/common';
 import { Component, computed, effect, inject, input, numberAttribute } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { IntlCurrencyPipe } from '../pipes/intl-currency-pipe';
+import { IntlCurrencyPipe } from '../../shared/pipes/intl-currency-pipe';
 import { ProductsService } from '../services/products-service';
-import { StarRating } from '../star-rating/star-rating';
+import { StarRating } from '../../shared/star-rating/star-rating';
 
 @Component({
   selector: 'product-detail',

@@ -2,7 +2,8 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { EncodeBase64 } from '../directives/encode-base64';
+import { EncodeBase64 } from '../../shared/directives/encode-base64';
+import { CanDeactivateComponent } from '../../shared/guards/leave-page-guard';
 import { ProductInsert } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 
@@ -12,10 +13,12 @@ import { ProductsService } from '../services/products-service';
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
 })
-export class ProductForm {
+export class ProductForm implements CanDeactivateComponent {
   #productsService = inject(ProductsService);
   #destroyRef = inject(DestroyRef);
   #router = inject(Router);
+
+  saved = false;
 
   newProduct: ProductInsert = {
     description: '',
@@ -29,7 +32,12 @@ export class ProductForm {
       .insertProduct(this.newProduct)
       .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe(() => {
+        this.saved = true;
         this.#router.navigate(['/products']);
       });
+  }
+
+  canDeactivate() {
+    return this.saved || confirm('¿Estás seguro de que quieres salir?');
   }
 }

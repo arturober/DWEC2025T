@@ -1,8 +1,8 @@
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, DestroyRef, inject, input, output } from '@angular/core';
 import { Product } from '../interfaces/product';
-import { IntlCurrencyPipe } from '../pipes/intl-currency-pipe';
-import { StarRating } from '../star-rating/star-rating';
+import { IntlCurrencyPipe } from '../../shared/pipes/intl-currency-pipe';
+import { StarRating } from '../../shared/star-rating/star-rating';
 import { ProductsService } from '../services/products-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from "@angular/router";
