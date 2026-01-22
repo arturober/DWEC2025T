@@ -1,0 +1,8 @@
+div:first-child {
+  overflow: hidden;
+
+  img {
+    height: 40px;
+  }
+}
+
