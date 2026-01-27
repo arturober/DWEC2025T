@@ -1,60 +1,98 @@
 <div class="card mb-4">
   <div class="card-header bg-success text-white">Add product</div>
   <div class="card-body">
-    <form (ngSubmit)="addProduct()">
+    <form (ngSubmit)="addProduct()" [formGroup]="productForm">
       <label class="mb-3 row">
         <span class="col-sm-2 col-form-label text-sm-end">Description</span>
         <div class="col-sm-10">
+          @let descModel = productForm.controls.description;
           <input
             type="text"
             class="form-control"
-            name="description"
-            [(ngModel)]="newProduct.description"
+            formControlName="description"
+            [class]="getValidationClasses(descModel)"
           />
+          @if (descModel.errors?.['required']) {
+            <div class="invalid-feedback">Description cannot be empty</div>
+          }
+          @if (descModel.errors?.['minlength']) {
+            <div class="invalid-feedback">
+              You must enter at least
+              {{
+                descModel.errors?.['minlength'].requiredLength -
+                  descModel.errors?.['minlength'].actualLength
+              }}
+              characters more
+            </div>
+          }
         </div>
       </label>
       <label class="mb-3 row">
         <span class="col-sm-2 col-form-label text-sm-end">Price</span>
         <div class="col-sm-10">
-          <input type="number" class="form-control" name="price" [(ngModel)]="newProduct.price" />
+          @let priceModel = productForm.controls.price;
+          <input
+            type="number"
+            class="form-control"
+            formControlName="price"
+            step="0.01"
+            [class]="getValidationClasses(priceModel)"
+          />
+          @if (priceModel.errors?.['required']) {
+            <div class="invalid-feedback">Price cannot be empty</div>
+          }
+          @if (priceModel.errors?.['min']) {
+            <div class="invalid-feedback">Price must be at least 1€</div>
+          }
         </div>
       </label>
       <label class="mb-3 row">
         <span class="col-sm-2 col-form-label text-sm-end">Available</span>
         <div class="col-sm-10">
+          @let availModel = productForm.controls.available;
           <input
             type="date"
             class="form-control"
-            name="available"
-            [(ngModel)]="newProduct.available"
+            formControlName="available"
+            [class]="getValidationClasses(availModel)"
           />
+          @if (availModel.errors?.['required']) {
+            <div class="invalid-feedback">Date cannot be empty</div>
+          }
+          @if (availModel.errors?.['minDate']) {
+            <div class="invalid-feedback">Date cannot be before {{ today | date: 'fullDate' }}</div>
+          }
         </div>
       </label>
       <label class="mb-3 row">
         <span class="col-sm-2 col-form-label text-sm-end"> Image</span>
         <div class="col-sm-10">
+          @let imgModel = productForm.controls.imageUrl;
           <input
             type="file"
             class="form-control"
             accept="image/*"
             encodeBase64
-            (encoded)="newProduct.imageUrl = $event"
-            name="fileName"
-            ngModel
+            (encoded)="imageBase64 = $event"
+            formControlName="imageUrl"
+            [class]="getValidationClasses(imgModel)"
           />
+          <div class="invalid-feedback">Image cannot be empty</div>
         </div>
       </label>
-      @if (newProduct.imageUrl) {
+      @if (imageBase64) {
         <div class="row mb-3">
           <div class="col-sm-10 offset-sm-2">
-            <img class="product-img" [src]="newProduct.imageUrl" alt="" />
+            <img class="product-img" [src]="imageBase64" alt="" />
           </div>
         </div>
       }
 
       <div class="mb-3 row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="productForm.invalid">
+            Submit
+          </button>
         </div>
       </div>
     </form>

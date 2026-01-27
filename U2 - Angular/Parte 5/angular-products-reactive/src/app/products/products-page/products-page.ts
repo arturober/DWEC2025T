@@ -1,18 +1,22 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Product, ProductsResponse } from '../interfaces/product';
 import { ProductItem } from '../product-item/product-item';
 import { ProductsService } from '../services/products-service';
 
 @Component({
   selector: 'products-page',
-  imports: [FormsModule, ProductItem],
+  imports: [ReactiveFormsModule, ProductItem],
   templateUrl: './products-page.html',
   styleUrl: './products-page.css',
 })
 export class ProductsPage {
   readonly showImage = signal(true);
   readonly search = signal('');
+
+  searchControl = new FormControl('', { nonNullable: true });
 
   productsService = inject(ProductsService);
 
@@ -21,10 +25,20 @@ export class ProductsPage {
   products = linkedSignal<ProductsResponse | undefined, Product[]>({
     source: () => this.productsResource.value(),
     computation: (newVal, previous) => {
-      if(!newVal) { return previous?.value ?? []; }
+      if (!newVal) {
+        return previous?.value ?? [];
+      }
       return newVal.products;
-    }
+    },
   });
+
+  constructor() {
+    this.searchControl.valueChanges
+      .pipe(takeUntilDestroyed(), debounceTime(600), distinctUntilChanged())
+      .subscribe((value) => {
+        this.search.set(value);
+      });
+  }
 
   toggleImage() {
     this.showImage.update((value) => !value);

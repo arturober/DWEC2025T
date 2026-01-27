@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EncodeBase64 } from '../../shared/directives/encode-base64';
 import { MinDate } from '../../shared/directives/min-date';
@@ -19,6 +19,8 @@ export class ProductForm implements CanDeactivateComponent {
   #productsService = inject(ProductsService);
   #destroyRef = inject(DestroyRef);
   #router = inject(Router);
+
+  productForm = viewChild<NgForm>('productForm');
 
   saved = false;
   today = new Date().toISOString().split('T')[0];
@@ -41,7 +43,7 @@ export class ProductForm implements CanDeactivateComponent {
   }
 
   canDeactivate() {
-    return this.saved || confirm('¿Estás seguro de que quieres salir?');
+    return this.saved || this.productForm()?.pristine || confirm('¿Estás seguro de que quieres salir?');
   }
 
   getValidationClasses(model: NgModel) {

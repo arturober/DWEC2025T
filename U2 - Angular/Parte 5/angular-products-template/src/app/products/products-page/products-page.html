@@ -6,7 +6,8 @@
       <div class="col-sm-5">
         <input
           type="text"
-          [(ngModel)]="search"
+          ngModel
+          #searchModel="ngModel"
           class="form-control"
           id="filterDesc"
           placeholder="Filter..."
