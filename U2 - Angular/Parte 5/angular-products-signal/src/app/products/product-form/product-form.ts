@@ -1,6 +1,5 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EncodeBase64 } from '../../shared/directives/encode-base64';
 import { CanDeactivateComponent } from '../../shared/guards/leave-page-guard';
@@ -9,7 +8,7 @@ import { ProductsService } from '../services/products-service';
 
 @Component({
   selector: 'product-form',
-  imports: [FormsModule, EncodeBase64],
+  imports: [FormField, EncodeBase64],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css',
 })
