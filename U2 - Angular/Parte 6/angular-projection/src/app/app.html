@@ -1,0 +1,24 @@
+<div class="p-4">
+  <my-card>
+    <h1>My Card</h1>
+    <p>Card content</p>
+  </my-card>
+</div>
+<div class="p-4">
+  <load-button colorClass="blue" [loading]="loading()" (click)="loading.set(true)">
+    Botón de carga
+  </load-button>
+</div>
+<div class="p-4">
+  <load-button colorClass="green" [loading]="loading()" (click)="showModal.set(true)">
+    showModal
+  </load-button>
+</div>
+
+<my-modal [(show)]="showModal">
+  <button footer class="py-1.5 px-3 rounded-lg shadow overflow-hidden bg-green-600 text-white">Sí</button>
+  <button footer class="py-1.5 px-3 rounded-lg shadow overflow-hidden bg-red-600 text-white">No</button>
+  <ng-container header>Ejemplo modal</ng-container>
+  <p>Soy un texto</p>
+  <p>Soy otro texto</p>
+</my-modal>

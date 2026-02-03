@@ -1,0 +1,16 @@
+@if(show()) {
+  <div class="modal-overlay">
+    <div class="modal-content ">
+      <button class="modal-close" (click)="show.set(false)">X</button>
+      <div class="modal-header">
+        <ng-content select="[header]"></ng-content>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer">
+        <ng-content select="button[footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+}
