@@ -20,7 +20,8 @@ export class ProductForm implements CanDeactivateComponent {
   #destroyRef = inject(DestroyRef);
   #router = inject(Router);
 
-  productForm = viewChild<NgForm>('productForm');
+  productForm = viewChild.required<NgForm>('productForm');
+  descriptionField = viewChild.required<NgModel>('descModel');
 
   saved = false;
   today = new Date().toISOString().split('T')[0];
@@ -43,7 +44,9 @@ export class ProductForm implements CanDeactivateComponent {
   }
 
   canDeactivate() {
-    return this.saved || this.productForm()?.pristine || confirm('¿Estás seguro de que quieres salir?');
+    return (
+      this.saved || this.productForm()?.pristine || confirm('¿Estás seguro de que quieres salir?')
+    );
   }
 
   getValidationClasses(model: NgModel) {
