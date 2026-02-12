@@ -1,0 +1,77 @@
+<div class="card mb-4">
+  <div class="card-header bg-success text-white">Add product</div>
+  <div class="card-body">
+    <form (submit)="addProduct($event)">
+      <label class="mb-3 row">
+        <span class="col-sm-2 col-form-label text-sm-end">Description</span>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [formField]="productForm.description" />
+          @for (error of productForm.description().errors(); track error.kind) {
+            <div class="invalid-feedback">{{ error.message }}</div>
+          }
+        </div>
+      </label>
+      <label class="mb-3 row">
+        <span class="col-sm-2 col-form-label text-sm-end">Price</span>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [formField]="productForm.price" />
+          @for (error of productForm.price().errors(); track error.kind) {
+            <div class="invalid-feedback">{{ error.message }}</div>
+          }
+        </div>
+      </label>
+      <label class="mb-3 row">
+        <span class="col-sm-2 col-form-label text-sm-end">Available</span>
+        <div class="col-sm-10">
+          <input
+            type="date"
+            class="form-control"
+            [formField]="productForm.available"
+          />
+          @for (error of productForm.available().errors(); track error.kind) {
+            <div class="invalid-feedback">{{ error.message }}</div>
+          }
+        </div>
+      </label>
+      <label class="mb-3 row">
+        <span class="col-sm-2 col-form-label text-sm-end"> Image</span>
+        <div class="col-sm-10">
+          <input
+            type="file"
+            class="form-control"
+            accept="image/*"
+            encodeBase64
+            (encoded)="imgbase64 = $event"
+            [formField]="productForm.imageUrl"
+          />
+          @for (error of productForm.imageUrl().errors(); track error.kind) {
+            <div class="invalid-feedback">{{ error.message }}</div>
+          }
+        </div>
+      </label>
+      @if (imgbase64 && productForm.imageUrl().valid()) {
+        <div class="row mb-3">
+          <div class="col-sm-10 offset-sm-2">
+            <img class="product-img" [src]="imgbase64" alt="" />
+          </div>
+        </div>
+      }
+
+      <div class="mb-3 row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" [disabled]="productForm().invalid()">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<swal
+  #exitConfirm
+  title="Salir sin guardar"
+  text="¿Seguro que quieres abandonar la página?"
+  icon="question"
+  confirmButtonText="Yes"
+  [showDenyButton]="true"
+  [focusCancel]="true"
+></swal>
