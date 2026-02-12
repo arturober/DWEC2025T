@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+@import "ol/ol.css";
+@import "@geoapify/geocoder-autocomplete/styles/minimal.css";
+
+.autocomplete-container {
+    position: relative;
+}
+
+.geoapify-autocomplete-input {
+    border: none;
+}
+
+.geoapify-input-wrapper {
+    border: 1px #ddd solid;
+}
