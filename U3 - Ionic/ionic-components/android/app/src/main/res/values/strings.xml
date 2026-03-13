@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ionic Components</string>
+    <string name="title_activity_main">Ionic Components</string>
+    <string name="package_name">io.damdaw.componentes</string>
+    <string name="custom_url_scheme">io.damdaw.componentes</string>
+</resources>
