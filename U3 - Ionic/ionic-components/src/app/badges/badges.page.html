@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Badges & Chips</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding" [fullscreen]="true">
+  <div>
+    <ion-badge color="secondary">10</ion-badge>
+    <ion-badge color="primary">20</ion-badge>
+    <ion-badge color="dark">30</ion-badge>
+    <ion-badge color="danger">40</ion-badge>
+  </div>
+
+  <ion-item>
+    <ion-badge slot="end" color="danger">23</ion-badge>
+    <ion-label>Friends</ion-label>
+  </ion-item>
+
+  <ion-chip color="dark">
+    <ion-label>Chip with Icon</ion-label>
+    <ion-icon name="close-circle" color="danger"> </ion-icon>
+  </ion-chip>
+</ion-content>
+
+<ion-footer>
+  <ion-tab-bar color="light">
+  <ion-tab-button tab="1">
+    <ion-icon name="heart"></ion-icon>
+    <ion-label>Favorites</ion-label>
+    <ion-badge color="danger"></ion-badge>
+  </ion-tab-button>
+
+  <ion-tab-button tab="2">
+    <ion-icon name="musical-note"></ion-icon>
+    <ion-label>Music</ion-label>
+  </ion-tab-button>
+
+  <ion-tab-button tab="3">
+    <ion-icon name="calendar"></ion-icon>
+    <ion-label>Calendar</ion-label>
+    <ion-badge color="danger">47</ion-badge>
+  </ion-tab-button>
+</ion-tab-bar>
+</ion-footer>
