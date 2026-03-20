@@ -34,4 +34,24 @@ export const routes: Routes = [
     path: 'toolbars',
     loadComponent: () => import('./toolbars/toolbars.page').then( m => m.ToolbarsPage)
   },
+  {
+    path: 'toast',
+    loadComponent: () => import('./toast/toast.page').then( m => m.ToastPage)
+  },
+  {
+    path: 'alert',
+    loadComponent: () => import('./alert/alert.page').then( m => m.AlertPage)
+  },
+  {
+    path: 'action-sheet',
+    loadComponent: () => import('./action-sheet/action-sheet.page').then( m => m.ActionSheetPage)
+  },
+  {
+    path: 'loading',
+    loadComponent: () => import('./loading/loading.page').then( m => m.LoadingPage)
+  },
+  {
+    path: 'popover',
+    loadComponent: () => import('./popover/popover.page').then( m => m.PopoverPage)
+  },
 ];

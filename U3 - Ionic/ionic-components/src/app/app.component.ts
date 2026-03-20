@@ -113,13 +113,18 @@ import {
 })
 export class AppComponent {
   public appPages = [
+    { title: 'Action sheet', url: '/action-sheet', icon: 'menu' },
+    { title: 'Alert', url: '/alert', icon: 'alert-circle' },
     { title: 'Badges & Chips', url: '/badges', icon: 'notifications' },
     { title: 'Buttons', url: '/buttons', icon: 'square' },
     { title: 'Cards', url: '/cards', icon: 'albums' },
     { title: 'Forms', url: '/forms', icon: 'checkbox' },
     { title: 'Grid', url: '/grid', icon: 'grid' },
     { title: 'Lists', url: '/lists', icon: 'list' },
+    { title: 'Loading', url: '/loading', icon: 'refresh' },
+    { title: 'Popover', url: '/popover', icon: 'albums' },
     { title: 'Toolbars', url: '/toolbars', icon: 'browsers' },
+    { title: 'Toast', url: '/toast', icon: 'alert' },
   ];
   constructor() {
     addIcons({
