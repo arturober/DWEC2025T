@@ -1,5 +1,5 @@
-import { provideZoneChangeDetection, provideZonelessChangeDetection } from "@angular/core";
-import { bootstrapApplication } from '@angular/platform-browser';
+import { importProvidersFrom, provideZoneChangeDetection, provideZonelessChangeDetection } from "@angular/core";
+import { bootstrapApplication, HammerModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter, withPreloading, PreloadAllModules } from '@angular/router';
 import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 
@@ -11,5 +11,6 @@ bootstrapApplication(AppComponent, {
     provideZonelessChangeDetection(),{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
+    importProvidersFrom(HammerModule),
   ],
 });
