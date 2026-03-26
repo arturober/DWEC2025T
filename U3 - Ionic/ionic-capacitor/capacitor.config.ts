@@ -1,11 +1,12 @@
 import type { CapacitorConfig } from '@capacitor/cli';
+import { KeyboardResize } from '@capacitor/keyboard';
 
 const config: CapacitorConfig = {
   appId: 'io.damdaw.capacitor',
   appName: 'Ionic Capacitor',
   webDir: 'www',
   android: {
-    allowMixedContent: true
+    allowMixedContent: true,
   },
   plugins: {
     SystemBars: {
@@ -13,7 +14,8 @@ const config: CapacitorConfig = {
       "insetsHandling": "disable"
     },
     Keyboard: {
-      "resizeOnFullScreen": false
+      resize: KeyboardResize.Native,
+      resizeOnFullScreen: false,
     },
     EdgeToEdge: {
       "navigationBarColor": "#ffffff",
@@ -21,6 +23,15 @@ const config: CapacitorConfig = {
     },
     StatusBar: {
       style: "DARK",
+    },
+    SocialLogin: {
+      providers: {
+        google: true,      // true = enabled (bundled), false = disabled (not bundled)
+        facebook: true,   // Use false to reduce app size
+        apple: false,      // Apple uses system APIs, no external deps
+        twitter: false   // false = disabled (not bundled)
+      },
+      logLevel: 1 // Warnings and errors only
     }
   }
 };

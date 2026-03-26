@@ -6,6 +6,11 @@ const config: CapacitorConfig = {
   webDir: 'www',
   android: {
     allowMixedContent: true
+  },
+  plugins: {
+    StatusBar: {
+      style: "DARK",
+    }
   }
 };
 
