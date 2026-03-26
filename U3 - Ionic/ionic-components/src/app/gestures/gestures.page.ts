@@ -54,11 +54,13 @@ export class GesturesPage {
     this.events.swipeRight++;
   }
 
-  pinch() {
+  pinch(event: Event) {
+    console.log(event);
     this.events.pinch++;
   }
 
-  rotate() {
+  rotate(event: Event) {
+    console.log(event);
     this.events.rotate++;
   }
 }

@@ -10,7 +10,7 @@
 <ion-content [fullscreen]="true">
   <ion-item (tap)="tap()" (press)="press()"
     (swipeLeft)="swipeLeft()" (swipeRight)="swipeRight()"
-    (pinch)="pinch()" (rotate)="rotate()" >
+    (pinchEnd)="pinch($event)" (rotate)="rotate($event)" >
     <ion-label style="min-height: 300px;">
       <h2>Touch me</h2>
       <p>You can pinch and rotate</p>

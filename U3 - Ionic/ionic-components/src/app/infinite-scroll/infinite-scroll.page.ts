@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, viewChild } from '@angular/core';
 import {
   IonButtons,
   IonContent,
@@ -35,11 +35,13 @@ export class InfiniteScrollPage {
   num = 1;
   finished = false;
 
+  infinite = viewChild(IonInfiniteScroll);
+
   constructor() {
     this.loadMoreItems();
   }
 
-  loadMoreItems(infinite?: IonInfiniteScroll) {
+  loadMoreItems() {
     // Simulamos una llamada a un servicio externo con un timeout
     setTimeout(
       () => {
@@ -53,9 +55,9 @@ export class InfiniteScrollPage {
           this.finished = true;
         }
 
-        infinite?.complete(); // Esconder animación al terminar de cargar
+        this.infinite()?.complete(); // Esconder animación al terminar de cargar
       },
-      infinite ? 2000 : 0 // En la carga inicial no tardamos nada
+      this.infinite() ? 2000 : 0 // En la carga inicial no tardamos nada
     );
   }
 }
