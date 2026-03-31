@@ -11,18 +11,9 @@ const config: CapacitorConfig = {
   plugins: {
     SystemBars: {
       "style": "DARK",
-      "insetsHandling": "disable"
     },
     Keyboard: {
-      resize: KeyboardResize.Native,
       resizeOnFullScreen: false,
-    },
-    EdgeToEdge: {
-      "navigationBarColor": "#ffffff",
-      "statusBarColor": "#0054e9"
-    },
-    StatusBar: {
-      style: "DARK",
     },
     SocialLogin: {
       providers: {

@@ -28,7 +28,6 @@ dependencies {
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-status-bar')
     implementation project(':capacitor-toast')
-    implementation project(':capawesome-capacitor-android-edge-to-edge-support')
     implementation project(':capgo-capacitor-launch-navigator')
     implementation project(':capgo-capacitor-social-login')
 

@@ -59,9 +59,6 @@ project(':capacitor-status-bar').projectDir = new File('../node_modules/@capacit
 include ':capacitor-toast'
 project(':capacitor-toast').projectDir = new File('../node_modules/@capacitor/toast/android')
 
-include ':capawesome-capacitor-android-edge-to-edge-support'
-project(':capawesome-capacitor-android-edge-to-edge-support').projectDir = new File('../node_modules/@capawesome/capacitor-android-edge-to-edge-support/android')
-
 include ':capgo-capacitor-launch-navigator'
 project(':capgo-capacitor-launch-navigator').projectDir = new File('../node_modules/@capgo/capacitor-launch-navigator/android')
 
