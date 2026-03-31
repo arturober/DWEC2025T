@@ -27,7 +27,14 @@ import {
   images,
   camera,
   arrowUndoCircle,
+  add,
+  eye,
+  menu,
+  trash,
+  close,
+  exit,
 } from 'ionicons/icons';
+import { NavController } from '@ionic/angular';
 import { AuthService } from './auth/services/auth-service';
 
 @Component({
@@ -55,12 +62,17 @@ import { AuthService } from './auth/services/auth-service';
 export class AppComponent {
   #authService = inject(AuthService);
   #platform = inject(Platform);
+  #navController = inject(NavController);
+
   userResource = this.#authService.getProfile();
   user = computed(() =>
     this.userResource.hasValue() ? this.userResource.value().user : undefined,
   );
 
-  public appPages = [{ title: 'Home', url: '/products', icon: 'home' }];
+  public appPages = [
+    { title: 'Home', url: '/products', icon: 'home' },
+    { title: 'Add product', url: '/products/add', icon: 'add' },
+  ];
   constructor() {
     addIcons({
       home,
@@ -70,6 +82,12 @@ export class AppComponent {
       images,
       camera,
       arrowUndoCircle,
+      add,
+      menu,
+      trash,
+      eye,
+      close,
+      exit,
     });
 
     this.initializeApp();
@@ -80,5 +98,10 @@ export class AppComponent {
       await this.#platform.ready();
       SplashScreen.hide();
     }
+  }
+
+  async logout() {
+    await this.#authService.logout();
+    this.#navController.navigateRoot(['/auth/login']);
   }
 }
