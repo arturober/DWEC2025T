@@ -117,3 +117,8 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+ion-header ion-item {
+  --border-radius: 0;
+  --inner-box-shadow: none;
+}

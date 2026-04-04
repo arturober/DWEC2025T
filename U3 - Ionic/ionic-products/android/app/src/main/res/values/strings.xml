@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ionic Products</string>
+    <string name="title_activity_main">Ionic Products</string>
+    <string name="package_name">io.damdaw.ionic.products</string>
+    <string name="custom_url_scheme">io.damdaw.ionic.products</string>
+</resources>

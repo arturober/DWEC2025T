@@ -1,5 +1,11 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, effect, inject, linkedSignal, viewChild } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  linkedSignal,
+  viewChild,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   ActionSheetController,
@@ -68,7 +74,7 @@ export class HomePage {
 
   constructor() {
     effect(() => {
-      if(!this.productsResource.isLoading()) {
+      if (!this.productsResource.isLoading()) {
         this.ionRefresher().complete(); // Paramos animación del pull to refresh
       }
     });

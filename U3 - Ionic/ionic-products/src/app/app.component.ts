@@ -1,22 +1,7 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { SplashScreen } from '@capacitor/splash-screen';
-import {
-  Platform,
-  IonApp,
-  IonContent,
-  IonIcon,
-  IonItem,
-  IonLabel,
-  IonList,
-  IonMenu,
-  IonMenuToggle,
-  IonRouterLink,
-  IonRouterOutlet,
-  IonSplitPane,
-  IonAvatar,
-  IonImg,
-} from '@ionic/angular/standalone';
+import { Platform, IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterLink, IonRouterOutlet, IonSplitPane, IonAvatar, IonImg, IonHeader, IonToolbar } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { User } from './auth/interfaces/user';
 import {
@@ -59,7 +44,9 @@ import { AuthService } from './auth/services/auth-service';
     IonRouterOutlet,
     IonAvatar,
     IonImg,
-  ],
+    IonHeader,
+    IonToolbar
+],
 })
 export class AppComponent {
   #authService = inject(AuthService);

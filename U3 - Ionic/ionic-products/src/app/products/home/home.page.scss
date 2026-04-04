@@ -1,0 +1,7 @@
+ion-content {
+  --padding-bottom: var(--ion-safe-area-bottom, env(safe-area-inset-bottom)) !important;
+}
+
+ion-fab {
+  bottom: calc(10px + var(--ion-safe-area-bottom, env(safe-area-inset-bottom))) !important;
+}
