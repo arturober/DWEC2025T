@@ -33,6 +33,8 @@ import {
   trash,
   close,
   exit,
+  informationCircle,
+  chatboxEllipses,
 } from 'ionicons/icons';
 import { NavController } from '@ionic/angular';
 import { AuthService } from './auth/services/auth-service';
@@ -88,6 +90,8 @@ export class AppComponent {
       eye,
       close,
       exit,
+      informationCircle,
+      chatboxEllipses,
     });
 
     this.initializeApp();

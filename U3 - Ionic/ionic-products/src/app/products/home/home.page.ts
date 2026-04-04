@@ -1,27 +1,27 @@
-import { Component, OnInit, effect, inject, linkedSignal, signal, viewChild } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+import { Component, effect, inject, linkedSignal, viewChild } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
-  NavController,
   ActionSheetController,
-  IonRouterLink,
-  IonHeader,
-  IonToolbar,
+  IonButton,
   IonButtons,
-  IonMenuButton,
-  IonTitle,
   IonContent,
-  IonRefresher,
-  IonRefresherContent,
   IonFab,
   IonFabButton,
+  IonHeader,
   IonIcon,
-  IonList,
   IonItem,
-  IonThumbnail,
   IonLabel,
-  IonButton,
+  IonList,
+  IonMenuButton,
+  IonRefresher,
+  IonRefresherContent,
+  IonRouterLink,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar,
+  NavController,
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
-import { CurrencyPipe } from '@angular/common';
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 
