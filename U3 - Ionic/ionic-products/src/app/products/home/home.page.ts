@@ -1,27 +1,33 @@
-import { Component, OnInit, effect, inject, linkedSignal, signal, viewChild } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import {
-  NavController,
+  Component,
+  effect,
+  inject,
+  linkedSignal,
+  viewChild,
+} from '@angular/core';
+import { RouterLink } from '@angular/router';
+import {
   ActionSheetController,
-  IonRouterLink,
-  IonHeader,
-  IonToolbar,
+  IonButton,
   IonButtons,
-  IonMenuButton,
-  IonTitle,
   IonContent,
-  IonRefresher,
-  IonRefresherContent,
   IonFab,
   IonFabButton,
+  IonHeader,
   IonIcon,
-  IonList,
   IonItem,
-  IonThumbnail,
   IonLabel,
-  IonButton,
+  IonList,
+  IonMenuButton,
+  IonRefresher,
+  IonRefresherContent,
+  IonRouterLink,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar,
+  NavController,
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
-import { CurrencyPipe } from '@angular/common';
 import { Product } from '../interfaces/product';
 import { ProductsService } from '../services/products-service';
 
@@ -68,7 +74,7 @@ export class HomePage {
 
   constructor() {
     effect(() => {
-      if(!this.productsResource.isLoading()) {
+      if (!this.productsResource.isLoading()) {
         this.ionRefresher().complete(); // Paramos animación del pull to refresh
       }
     });

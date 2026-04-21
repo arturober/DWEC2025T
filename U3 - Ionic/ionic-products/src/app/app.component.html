@@ -1,17 +1,21 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay" [disabled]="!user()">
-      @if (user(); as user) {
-        <ion-item color="tertiary">
-          <ion-avatar slot="start">
-            <ion-img [src]="user.avatar"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <h3>{{ user.name }}</h3>
-            <p>{{ user.email }}</p>
-          </ion-label>
-        </ion-item>
-      }
+      <ion-header>
+        <ion-toolbar color="tertiary">
+          @if (user(); as user) {
+            <ion-item  color="tertiary">
+              <ion-avatar slot="start">
+                <ion-img [src]="user.avatar"></ion-img>
+              </ion-avatar>
+              <ion-label>
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.email }}</p>
+              </ion-label>
+            </ion-item>
+          }
+        </ion-toolbar>
+      </ion-header>
       <ion-content>
         <ion-list>
           @for (p of appPages; track $index) {
@@ -22,7 +26,7 @@
                 lines="none"
                 detail="false"
                 routerLinkActive="selected"
-                [routerLinkActiveOptions]="{exact: true}"
+                [routerLinkActiveOptions]="{ exact: true }"
               >
                 <ion-icon
                   aria-hidden="true"

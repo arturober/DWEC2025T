@@ -17,8 +17,8 @@
         }
       </ion-item>
       <ion-item>
-        <ion-input type="number" min="0.00" step="0.01" name="price" required [(ngModel)]="newProd.price" #priceModel="ngModel"  label="Price" labelPlacement="floating"></ion-input>
-        @if (priceModel.dirty && priceModel.valid) {
+        <ion-input type="number" min="0.00" step="0.01" [formField]="productForm.price"  label="Price" labelPlacement="floating"></ion-input>
+        @if (productForm.price().dirty() && productForm.price().valid()) {
           <ion-icon name="checkmark-circle" slot="end" color="success"></ion-icon>
         }
       </ion-item>
@@ -34,13 +34,13 @@
         </ion-button>
       </ion-item>
     </ion-list>
-    @if (newProd.imageUrl) {
-      <ion-img [src]="newProd.imageUrl"></ion-img>
+    @if (image()) {
+      <ion-img [src]="image()"></ion-img>
     }
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" expand="block" [disabled]="productForm.invalid || !newProd.imageUrl">
+          <ion-button type="submit" color="primary" expand="block" [disabled]="productForm().invalid() || !image()">
             <ion-icon name="add" slot="start"></ion-icon>
             Add product
           </ion-button>
